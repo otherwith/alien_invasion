@@ -26,7 +26,7 @@ def run_game():
 
     ship = Ship(screen)
 
-    # 开始游戏主循环 
+    # 开始游戏主循环
     while True:
 
         # 监视键盘和鼠标事件
