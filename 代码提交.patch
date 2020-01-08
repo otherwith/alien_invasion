@@ -1,0 +1,346 @@
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/.gitignore	(date 1578493534568)
++++ .idea/.gitignore	(date 1578493534568)
+@@ -0,0 +1,2 @@
++# Default ignored files
++/workspace.xml
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(date 1578489170406)
++++ .idea/misc.xml	(date 1578489170406)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="JavaScriptSettings">
++    <option name="languageLevel" value="ES6" />
++  </component>
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.7" project-jdk-type="Python SDK" />
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/vcs.xml	(date 1578493645574)
++++ .idea/vcs.xml	(date 1578493645574)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/alien_invasion.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/alien_invasion.iml	(date 1578489170364)
++++ .idea/alien_invasion.iml	(date 1578489170364)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="PYTHON_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <content url="file://$MODULE_DIR$" />
++    <orderEntry type="jdk" jdkName="Python 3.7" jdkType="Python SDK" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++  <component name="TestRunnerService">
++    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
++  </component>
++</module>
+\ No newline at end of file
+Index: alien_invasion.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- alien_invasion.py	(date 1578493065754)
++++ alien_invasion.py	(date 1578493065754)
+@@ -0,0 +1,38 @@
++# author:28487
++# datetime:2020/1/8 21:12
++# software: PyCharm
++
++"""
++文件说明：
++"""
++import pygame
++from settings import Settings
++from ship import Ship
++import game_functions as gf
++
++
++def run_game():
++    """
++    初始化游戏，并创建一个屏幕对象
++    :return:
++    """
++    pygame.init()
++    ai_settings = Settings()
++    screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
++    pygame.display.set_caption("Alien Invasion")
++
++    # 设置背景色
++    bg_color = ai_settings.bg_color
++
++    ship = Ship(screen)
++
++    # 开始游戏主循环
++    while True:
++
++        # 监视键盘和鼠标事件
++        gf.check_events()
++
++        gf.update_screen(ai_settings,screen,ship)
++
++
++run_game()
+Index: settings.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- settings.py	(date 1578493265895)
++++ settings.py	(date 1578493265895)
+@@ -0,0 +1,18 @@
++# author:28487
++# datetime:2020/1/8 21:29
++# software: PyCharm
++
++"""
++文件说明：
++"""
++class Settings():
++    """存储所有的设置的类"""
++
++    def __init__(self):
++        """
++        初始化游戏设置
++        """
++        self.screen_width = 1200
++        self.screen_height = 800
++        self.bg_color = (0,191,255)
++
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/modules.xml	(date 1578489123107)
++++ .idea/modules.xml	(date 1578489123107)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/alien_invasion.iml" filepath="$PROJECT_DIR$/.idea/alien_invasion.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/inspectionProfiles/profiles_settings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/inspectionProfiles/profiles_settings.xml	(date 1578489123179)
++++ .idea/inspectionProfiles/profiles_settings.xml	(date 1578489123179)
+@@ -0,0 +1,6 @@
++<component name="InspectionProjectProfileManager">
++  <settings>
++    <option name="USE_PROJECT_PROFILE" value="false" />
++    <version value="1.0" />
++  </settings>
++</component>
+\ No newline at end of file
+Index: ship.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ship.py	(date 1578491708004)
++++ ship.py	(date 1578491708004)
+@@ -0,0 +1,33 @@
++# author:28487
++# datetime:2020/1/8 21:42
++# software: PyCharm
++
++"""
++文件说明：
++"""
++
++import pygame
++
++class Ship():
++
++    def __init__(self,screen):
++        """
++        初始化飞船并设置其初始位置
++        """
++        self.screen = screen
++
++        #加载飞船图像并获取其外接矩形
++        self.image = pygame.image.load('images/ship.bmp')
++        self.rect = self.image.get_rect()
++        self.screen_rect = screen.get_rect()
++
++        #将每艘新飞船放在屏幕底部中央
++        self.rect.centerx = self.screen_rect.centerx
++        self.rect.bottom = self.screen_rect.bottom
++
++    def blitme(self):
++        """
++        在指定位置绘制飞船
++        :return:
++        """
++        self.screen.blit(self.image,self.rect)
+\ No newline at end of file
+Index: game_functions.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- game_functions.py	(date 1578493129364)
++++ game_functions.py	(date 1578493129364)
+@@ -0,0 +1,35 @@
++# author:28487
++# datetime:2020/1/8 22:11
++# software: PyCharm
++
++"""
++文件说明：
++"""
++
++import sys
++import pygame
++
++
++def check_events():
++    """
++    响应按键和鼠标事件
++    :return:
++    """
++    for event in pygame.event.get():
++        if event.type == pygame.QUIT:
++            sys.exit()
++
++def update_screen(ai_settings,screen,ship):
++    """
++    更新屏幕上的图像并切换到新的屏幕上
++    :param ai_settings:
++    :param screen:
++    :param ship:
++    :return:
++    """
++    # 每次循环都重绘屏幕
++    screen.fill(ai_settings.bg_color)
++    ship.blitme()
++
++    # 让最近绘制的屏幕可见
++    pygame.display.flip()
+\ No newline at end of file
+diff --git images/alien.bmp images/alien.bmp
+new file mode 100644
+index 0000000000000000000000000000000000000000..dbe01a05de0f6f904459b92fd2d99193aea0bbad
+GIT binary patch
+literal 10494
+zc%0Rly-piJ5XUbS(nU~^f;>W6C?bebfGZG6#k0^OS_CzM7G3~^cmax(=@KU?Y|HD%
+zi1N1wHlx|^4<DD&ShCi8vp>(y%+B2nzWn*nEaW3T^RJ)r`Gn7#=KW&)D+b@arO%7Z
+z{%5&X*IT2l*QRhv^UdO33|hx~B4FDbZJL9<Wd<$S+F@%B_Lg~Pykp|&LDT=)g6ud|
+zr&UZ1#siaC4+6f*Dzinf)v`ux!lin!=gi!o9u#q&EtDYLFxN^$N)Uuxxv6t?ZgpvO
+zW*Dz!P1gr*kpGcd%oVL!nZ;mv5OOErd!e=VM;l~@qW36TW%zHE!jNA1z9QIM%q7@Y
+z>Z+D06WGrT#p<c60MBYF1KSE5WQO9xq=j5|l9KU4U5FS?Vvct>4w3EA_QB*}f3j~X
+z#_?-RGZTcNX`<Fy6=@|Z004BClB%!<HeoPGEB4D3JVF5pR9+U!6*d7M2`qNp6GG7S
+zU+WvcH!7lLEMX=WBHuN6*|dTj8UsusDpd(8b{yNC7eyv^uzXQ$#{g56xKnq#<6W~#
+zfO&7c$H(<dOb8l3njEeDTx+6xiF<YL;iRSU#h(Hm#f99CXIc#H%uz#V3HU9W(*p*x
+zFm8p9In+eWfkF5@12rR_X)OemxXO>sb5PT!`VEV6o2b1Mma*i+_EKF!xtBcHNwh8!
+z)2w-1Vg#py=OhLBt-9q5)=Z=@#xzd?(m&#7E*#>YU><OyqsF=5`ui~TpdNI731D1^
+zpZElqx^^dF_l;^`w%lB`8-=Tnr^f&eE(eELcP9gz??uoECOoO9#_{YcW;slTW;b=&
+z`lueKYHIzPd<&{q<5bUxx<~grC({#iP)qmDB=to5vol}*i^yo#&0Pm7`eYrtItKK^
+zXP(jV5#9~9>HpV?TffpR*gUEic%s&M8vdTBwa3d21{7_y#ONx~n^|wV^-pMtvzg&l
+zli4hKK?MUyl3F0TB&O%*>VH@fiH$`|oJKwW>Toq?a!d;y#6FxH>YPQIp!u}kbp{n1
+z6vU2ykmbQfyP|>hmSsEKkDdBd*@{i~L5-2c+00Ocw{<-4X{y;G>f8~JtxA~9e1t<>
+zRU$^_k0@D}a-(kOi<nlzjC9~#O|4g5@G6mOyo!FNldf5$bBTMcLN9`?-Y8^-<?`1q
+z9wCQ|94u*BE52cOiEaY9t7D#EyL8#WB)UHHa+G&tSn>6`Uw9K(f}Q%Zrcn4TjO)F5
+yuYgI!+a;vonL3-r-9B^{5>_$0ZhybDj3S&Ts2l!r2h<K~T8RLUPPZkU6n_C~WSWWq
+
+diff --git images/ship.bmp images/ship.bmp
+new file mode 100644
+index 0000000000000000000000000000000000000000..9a94402a63dc937a1b6531c937cde4e254db31f1
+GIT binary patch
+literal 8694
+zc%03d2~?9;7ROyW+A7vsmpaoqRqHuZd+eNcW;%|oQ+wK(R(r;!weA)brEH1_vhPtg
+zQC0~g?16+O><L>~vXBH4!WJL|0$Jh99z;P(JC@8%Vv$mzVn^kj_k}F)d-r$m_kZ`@
+z@8i?`<69P)+YUIk!SPQx-h*TDqK)S7>G1p7m6qeDrhF<5Deu;k1qOKYbmo65Evn;g
+zMB6B0Muu0d22rUHWWjlWs7z5caY=@h$66=O@Ft`~rXMsKgjlK_kf;_EwuMA2Q=6d?
+zA);QxHEwR46b%BU(x69NBZuGFF`|$!2y8Qe34>6k`|Qe?P@>kVkWk_1vJT@4o-wp*
+zRHH<6S|qhlziH>)zwgj%G!Mo<UtqNgiMXzP>Fv>X9mY!=^}TZSwuZ^o0^=)!$=B(|
+z3Zdby9?7fLZr*)&)vLpf4qBB;`CQi~qSGnE!!#?chJXM5oh`@5_r;8#DF5M4RO326
+zU{AiuHtw$Y(Y<8sOVrq=Pexa7yuD$)p|Vm93VB|{V46fyZQN+ET4`AS_MNSV?)};4
+z`(3yn|5{^wgKK=P-ME!CxwCw7C;I+&=ZQBy8(Z_n?U$At-g-+fl|CO?gH4G<dGMfq
+z*|Oo4D-5r08rigGbo-@=e<a@DMK*3@7`HS{zRfUxNS^#4@&0y~iOqY*)@~WGT48|k
+zyLam>3VG(>NN1;N(ISJD)$q!dhL_h3zrJg9+xh!{3pak0H~D_GaXWSL-CE;EB;!uB
+z5q#PF#n{@dz&vbaWmvj&*ug<(Fesn7u#t`q^%V1}m&Z43SO4K-^44#vKfq3WTw&bR
+zVBAR>{>!!6?e461Tz}m3#e{_!2E!?<SDS<lsrw0SKj9TZKpXq^>0fxkuxi!4<;znR
+zEm^Vn1*;{?R{idk*LPe_ea|Ln*_zjuytHb`@>R=LZ~Eg${Izf10c}{A*RC~SFdCii
+zNlf<%g~}&a71H0YvbNT5*dQ?%FH23e&0^EL7Z)#jap_c1WBO{zvh}ZSHNO0^Vcj~z
+z`t|z5hjn_r^6|A{2`n6g3Pnc)UEao%%Vf&=Z&5HDPP%tb-N<HJ*cLB-Sba@>u>5^x
+z&5OrRe|P@8CO%%%-mV^nVgz|ygO+ha2r|^)$D`E`%47(=PQ_t~y1P{xt#bZSf$_t4
+z?jHYa*P?07`Ov@jfB4??KnJ?mkAHW2co@;^5w&_AMqnsx`GW{Dz->gR6#0N?XlO{*
+z#v5hRN4YEkgQ`Ft`t_I-Y7Mt3=`rPD7xM${Lv0V=a6C~N=}wLDp~d;+1zqs7J`i&L
+zP!Z}vMTk=iy+*Ck&TDd0>7~&K1>J*;`tMtsB#jM2gM;vsOw^}qVvcc`qikw_HAy1u
+z0Y|2tHCI!q)oslBst6ZK<dxcJPim|$JwAYu5X3~Ipu-#Jv^c-IXs?=^?&OdQ;(pQN
+zh;X`kdsqwuqh_4T)H7*{-d@W92)neIGsb0(FzXHUY8jc>ORp6Rx=h^W)IUd)OQm&~
+z5K5$5eT+BbRsb^*)rbjcN)G3wM3{PVcq2BHop_az5J-*nsg3e%ASBL>YoUcu$Ye5c
+zN2`cJ($|**7=#qzHOb_%sWDQqM9ZSVPdZwas<v#9oYz}M=%$cFJpvH<92I0&Bds$0
+zvKcs#opcR2dFeM=GNM{DW6V7YK5|ncz>$W8AQN_+e=omf4q%`iQmT5IoBAlF;<6k~
+zZ7Cq#X4c<rY7ljIO}|Dem0Hl!e2-1l(JECnrHTroxD?-4nBGN5Y%a{|=67gxdezSh
+zGB|f=P{ANzYHzqfgn^2i8qt~&)sY>~CnR(d63rdmfsb#^jBZZ5&c=o|Bm~w(y7H<^
+zW<=mYYym>6<2Q3!iRoY(000AE0O=lw-ov0m^k+H<Qm?BTrdK~?E=cdrP3pua@Gv2D
+zN#V_PmC^x`LMm3sq|oIOF`vsKg<qz}`LPnOa#OBDVEOn2K`us^pVCWAhb|<h2=cH%
+z-iC{9PK|^M!2oS1g-ZH*1{HEkvIE7MXB%jxR?)E6J2P(f<YB?|6tkXQC9kbe%yOZn
+z5{bNqq^>EOVix2kb!5fy(r$3EVa!+`Qm{isls5%^wIV(+H_$HGelIMphFbwm$zh-e
+zKK_=#Y;K@93r-i85(Y}LMTHrHyyQ+o0z{jW63$Ers*Z5Y_W!mjEs9fFz^yE#<znko
+zB5Q7XH6;YKq~8Q{V04OEU0bHEC5yWFk6gJHulrkhgVn{qWNyNQfH}xuHIY{;Lob%0
+z?1}<xaPFrX;{93ZU~cO5_N=(>T#U(930_9dQ&bc{mzU>B$_Racor?v{z&x-XVV*3H
+zZ;Je^i+oR$g1)VZaG}L`!<S8%P#7?S8L2AnZ)})*`+>ctpI-AQ=1?=UH{`U6Q0KB>
+zyW&8bEYCB{gg|!UHCSj6<evQGfs!oXM5>D+KCqS%$^-X%iK(CvSduUg8y%G6cfL5l
+z1{{Z}U_$CF%<}SlSzWnQES`;aYAuMxl74c&WNv1Zi5c&6mSwUP(vlGkNWH`~i0WWv
+zAzV#8z1qN_XzD6}UrNdWg>>a4wc%no$zd>0VX#w?|LI?4R#X-Cw705$ZP&D98&OY>
+zusFNF@Yk5VZP@7GCTu8Z6_EN0GNhzjfYeeeM_BbEY^t7Ct)!HKR76EMkVjiqEH^ov
+zi4HCaxm4h5U52usjTw9#D8_X$X^=@CXWz77_jR=K2^e7>W)9|T&(rKgGjqlibIwpz
+z(I~s_zb)(u9($shflx{wGUFaFm(I<chv~_|bT`zSlG}VXdKfC?vO4eyvoRO>pUrYV
+z2@BAqjr1tchLD&xP>LU+m*cJmoZP$T<etw__O=Ep*`$pElQtk3K8`lJvTt=#NRR`S
+zPf)O_)%?1Oj_g~HWG*l<AE(Cpv6HUy(jqNuaHu>l#L4cer<+bK{%+h*nnyT)@PMS0
+z0PcWOEg3gq>j5_jzUO9JgYCFjei^}38_&Nzs8TfA_L?$Ias&rEley6UY_8Wya+oU%
+zje^}7u6r*rg%Io$;_0eU3Z?ygMA0{X?>42hB-GxfuOOu(JI=hVpkOz|xt}chB{MdZ
+zmmJ<!gp)|bPyD>;0k%rj)lf%|4`iWdGUs`p%nz`I@6GbK*@}zvJ!{>@sqO3L$i<z?
+z!G4`uaoeDY^!BVz2y4Yfn}rcreZvFqaU4#c&fJg?%#IIeF3ysgfag<Q&xVa4d=`}&
+z>pz1z$LmCnw>34!mucEoA}VeMMhAHDc~p^rD;of2kzO-6GOQ`d&A|s;=A~VSEgm+_
+zf<Sw4b_O#&#<!^ur;t4?+kRt%NuXA5V>77n0o9Ri)3uT9eylv)g&yzMm~@R0=$aZE
+z*4gqi=FvL_dTlM%(}|rF0;Lq-ftxv=C#EsGLDkJF$W#mt{dUwD*cz>_x4Wwj8$r72
+zIK`ad@>NlwU0swHs5IT%DKjyutDR<M<}2l9<`Dy%PDgt<!My+glS40MT{#9Pnwjm%
+zDEpc?e@;b#N~c#og=aLD`!ZP3P}md%*cSPn2Gdz?htge-P_DZIPpXGqCi-Sq8!&TZ
+z{d}e30W*t6yX9tA7j4p2LBM%%)5IKLQ|y11f(aM2HN(cCeEb{Q`D0sNMM6Pgln>$Z
+z0lfQBjKkhilp|;+!}D9rjjNr!I#KsD<~w>Cg%a<4nsVbxWtelyr9*hPLqwlb*{+9~
+zq<qWG-7|OuW-$SG0UUZQ-v1oV^~*%Z162{ud4Y~0E)Jc|_0yS$b!t2ogLOS!8SY#V
+za1P_RH~Y%rqG;a%vBdNg>8XWxHgc0umAZ*iMu>1LLOE1~I=LO$&!7|y^l&ZAkn6On
+zA)j;B1wr;@LAGh$XUS+(M{}b_XLy3gDgQ5Qc!iV#3`{bS=y5c|<IKgAC;EH1N=2^*
+z8TeshG%7eK{QTD>lx<<yWdXlUrO`n#^XyR{NiGu)5K&IW{$~;|pRhS}n4F*0NUL@^
+zXB%vDxFpCX^Wr{OYs%;J0C%<q98HzPOqYZC-X{rOr#z1S=h9buk}n@C^gTszKSD}C
+z4a(&UhjywB^!5-#E<pCfU->%U>nPFtD8c=3mh0EJD@Qsx47jm=-heZkX-R5z^iq8K
+zrG4qn`_eD%H+5&zYiWGI!V9pe{geO=X&xuAj(e~UpPTz0wC$&&Ug3iHzu+tlaza;o
+zOT6_582f)G+5aoa_7h5OidJt}u)s>oV^W>IJT2<h*<I*!yKzBwy5Tzu8Tdg%5V=&E
+f>3bS&_jzwuhjJk$x7nJ7u$fxfR8yvWI>7$}Yt@eL
+
